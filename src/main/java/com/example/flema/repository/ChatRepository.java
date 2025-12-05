@@ -11,6 +11,6 @@ import com.example.flema.entity.Item;
 @Repository
 public interface ChatRepository extends JpaRepository<Chat, Long> {
 
-    List<Chat> findByItemByCreatedAtAsc(Item item);
+    List<Chat> findByItemOrderByCreatedAtAsc(Item item);
 
 }

@@ -18,9 +18,9 @@ public class ChatService {
     private final LineNotifyService lineNotifyService;
 
     public ChatService(
-        ChatRepository chatRepository,
-        ItemRepository itemRepository,
-        LineNotifyService lineNotifyService) {
+            ChatRepository chatRepository,
+            ItemRepository itemRepository,
+            LineNotifyService lineNotifyService) {
         this.chatRepository = chatRepository;
         this.itemRepository = itemRepository;
         this.lineNotifyService = lineNotifyService;
@@ -30,16 +30,16 @@ public class ChatService {
     public List<Chat> getChatMessagesByItem(Long itemId) {
         // 商品の存在を確認（なければ400相当の例外）
         Item item = itemRepository.findById(itemId)
-        .orElseThrow(() -> new IllegalArgumentException("Item not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Item not found"));
         // 作成日時昇順でリストを返す
-        return chatRepository.findByItemByCreatedAtAsc(item);
+        return chatRepository.findByItemOrderByCreatedAtAsc(item);
     }
 
     // メッセージ送信：保存して相手にLINE通知（可能なら）を行う
     public Chat sendMessage(Long itemId, User sender, String message) {
         // 対象商品を取得（存在しなければ例外）
         Item item = itemRepository.findById(itemId)
-        .orElseThrow(() -> new IllegalArgumentException("Item not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Item not found"));
 
         // 新規チャットエンティティを構築
         Chat chat = new Chat();
@@ -60,9 +60,9 @@ public class ChatService {
         if (receiver != null && receiver.getLineNotifyToken() != null) {
             // 通知本文を作成
             String notificationMessage = String.format("\n商品「%s」に関する新しいメッセージが届きました！\n送信者: %s\nメッセージ: %s",
-            item.getName(),
-            sender.getName(),
-            message);
+                    item.getName(),
+                    sender.getName(),
+                    message);
 
             // LINE Notifyへ送信
             lineNotifyService.sendMessage(receiver.getLineNotifyToken(), notificationMessage);

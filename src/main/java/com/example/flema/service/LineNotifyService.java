@@ -15,10 +15,9 @@ public class LineNotifyService {
     @Value("${line.notify.api.url:https://notify-api.line.me/api/notify}")
     private String lineNotifyApiUrl;
     // HTTPクライアントの参照
-    private final RestTemplate restTemplate;
-    
-    public LineNotifyService(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    private final RestTemplate restTemplate = new RestTemplate();
+
+    public LineNotifyService() {
     }
 
     // アクセストークンと本文を受け取り、LINE Notifyへ送信
