@@ -12,11 +12,11 @@ import java.util.List;
 
 @Service
 public class ChatService {
-    
+
     private final ChatRepository chatRepository;
     private final ItemRepository itemRepository;
     private final LineNotifyService lineNotifyService;
-    
+
     public ChatService(
         ChatRepository chatRepository,
         ItemRepository itemRepository,
@@ -32,7 +32,7 @@ public class ChatService {
         Item item = itemRepository.findById(itemId)
         .orElseThrow(() -> new IllegalArgumentException("Item not found"));
         // 作成日時昇順でリストを返す
-        return chatRepository.findByItemOrderByCreatedAtAsc(item);
+        return chatRepository.findByItemByCreatedAtAsc(item);
     }
 
     // メッセージ送信：保存して相手にLINE通知（可能なら）を行う
@@ -63,7 +63,7 @@ public class ChatService {
             item.getName(),
             sender.getName(),
             message);
-            
+
             // LINE Notifyへ送信
             lineNotifyService.sendMessage(receiver.getLineNotifyToken(), notificationMessage);
         }

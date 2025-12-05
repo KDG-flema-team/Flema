@@ -40,7 +40,7 @@ public class StripeService {
         .setEnabled(true)
         .build()
         )
-        .build();        
+        .build();
         // PaymentIntentを作成して返す
         return PaymentIntent.create(params);
     }

@@ -12,7 +12,7 @@ import com.example.flema.entity.User;
 
 @Repository
 public interface FavoriteItemRepository extends JpaRepository<FavoriteItem, Long> {
-    
+
     Optional<FavoriteItem> findByUserAndItem(User user, Item item);
 
     List<FavoriteItem> findByUser(User user);

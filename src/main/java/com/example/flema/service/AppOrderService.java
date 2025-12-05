@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -114,7 +115,7 @@ public class AppOrderService {
         // 確定した注文を返す
         return savedOrder;
     }
-        
+
     // すべての注文取得（管理者ダッシュボード等）
     public List<AppOrder> getAllOrders() {
         // 全件を返す
@@ -157,7 +158,7 @@ public class AppOrderService {
         // Optionalで返す
         return appOrderRepository.findById(orderId);
     }
-    
+
     // 最新の“購入済”注文ID（レビュー画面遷移用）
     public Optional<Long> getLatestCompletedOrderId() {
         // ステータスが購入済の中で最大IDを返す
@@ -166,7 +167,7 @@ public class AppOrderService {
         .map(AppOrder::getId)
         .max(Long::compare);
     }
-    
+
     // 指定期間の売上合計
     public BigDecimal getTotalSales(LocalDate startDate, LocalDate endDate) {
         // 期間内の購入済/発送済のみ合計

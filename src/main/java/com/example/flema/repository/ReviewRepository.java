@@ -11,7 +11,7 @@ import com.example.flema.entity.User;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
-    
+
     List<Review> findBySeller(User seller);
 
     Optional<Review> findByOrderId(Long orderId);

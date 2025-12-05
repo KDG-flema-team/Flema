@@ -14,10 +14,10 @@ import com.example.flema.repository.ItemRepository;
 
 @Service
 public class FavoriteService {
-    
+
     private final FavoriteItemRepository favoriteItemRepository;
     private final ItemRepository itemRepository;
-    
+
     public FavoriteService(
         FavoriteItemRepository favoriteItemRepository,
         ItemRepository itemRepository) {
