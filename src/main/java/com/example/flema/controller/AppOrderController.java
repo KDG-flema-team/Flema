@@ -32,7 +32,6 @@ public class AppOrderController {
 
   private final AppOrderService appOrderService;
   private final UserService userService;
-  @SuppressWarnings("unused")
   private final ItemService itemService;
 
   @Value("${stripe.public.key}")

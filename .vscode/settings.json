@@ -9,5 +9,9 @@
     },
     "java.compile.nullAnalysis.mode": "automatic",
     "java.format.settings.url": ".vscode/java-formatter.xml",
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "postman.settings.dotenv-detection-notification-visibility": false,
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.defaultPackageManager": "ms-python.python:conda",
+    "python-envs.pythonProjects": []
 }
